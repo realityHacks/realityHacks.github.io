@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>RealityHacks 2019</title>
+		<link rel="shortcut icon" href="./img/favicon.ico">
+
+		<!-- UIkit CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.16/css/uikit.min.css" />
+
+		<!-- UIkit JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.16/js/uikit.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.16/js/uikit-icons.min.js"></script>
+
+		<!-- jQuery JS -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+		<!-- ajaxChimp JS -->
+		<script type="text/javascript" src="./js/jquery.ajaxchimp.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+	</head>
+	<body >
+		<div class="uk-cover-container" style="top:-1px; width: 100%;" uk-height-viewport>
+			<iframe src="stars.html" width="560" height="315" frameborder="0" style="z-index:-1;" allowfullscreen uk-cover></iframe>
+			<img id="RH-logo" src="./img/logo.png">
+			<h1 class="intro-info" id="date" style="margin-bottom: 10px;">D.C.'s Premiere AR/VR Hackathon</h1>
+			<h2 class="intro-info" id="date" style="font-size: 2.2em; margin-bottom: 20px;">Fall 2019 @ UMD</h2>
+			<div id="subscription-div">
+				<form id="subscription-form">
+					<input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="email-field" size="25" value="" placeholder="your email address" required>
+					<input type="submit" value="Subscribe to Mailing List" name="subscribe" id="subscribe" class="button">
+				</form>
+			</div>
+			<img id="mars" src="./img/mars.png">
+		</div>
+
+		<script type="text/javascript">
+			$('#subscription-form').ajaxChimp({
+				url: 'https://realityhacks.us12.list-manage.com/subscribe/post?u=6a1662d54e970f34a887e64de&id=1eced96f7e',
+				callback: mailchimpCallback
+			});
+
+			function mailchimpCallback(resp) {
+				if (resp.result === 'success') {
+					$(function() {
+						var modal = UIkit.modal("#subscription-confirmation");
+						modal.show();
+						$('#email-field').val("");
+					});
+				} else if (resp.result === 'error') {
+					$(function() {
+						if (resp.msg.indexOf("is already subscribed to list RealityHacks.")  >= 0) {
+							var modal = UIkit.modal("#already-subscribed");
+							modal.show();
+						} else {
+							var modal = UIkit.modal("#subscription-error");
+							modal.show();
+						}
+						
+						$('#email-field').val("");
+					});
+				}
+			}
+		</script>
+
+		<div id="subscription-confirmation" class="uk-flex-top" uk-modal>
+			<div class="uk-modal-dialog uk-margin-auto-vertical">
+				<div class="uk-modal-header">
+					<h2 class="uk-modal-title">One Final Step...</h2>
+				</div>
+				<div class="uk-modal-body">
+					<p>Your email address has been submitted successfully to our MailChimp mailing list. You should be receiving a email within the next few seconds, with a link to confirm your subscription.</p>
+					<p>Thank you once again for your interest in RealityHacks. Together, we shall define the future!</p>
+				</div>
+				<div class="uk-modal-footer uk-text-right">
+					<button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="already-subscribed" class="uk-flex-top" uk-modal>
+			<div class="uk-modal-dialog uk-margin-auto-vertical">
+				<div class="uk-modal-header">
+					<h2 class="uk-modal-title">Error, well... sort of</h2>
+				</div>
+				<div class="uk-modal-body">
+					<p>Unfortunately we cannot add you to our mailing list...but that's because you've already subscribed to our mailing list! Just sit back and relax, and we'll be sure to reach out to you as soon as registration opens.</p>
+					<p>Thank you once again for your interest in RealityHacks. Together, we shall define the future!</p>
+				</div>
+				<div class="uk-modal-footer uk-text-right">
+					<button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="subscription-error" class="uk-flex-top" uk-modal>
+			<div class="uk-modal-dialog uk-margin-auto-vertical">
+				<div class="uk-modal-header">
+					<h2 class="uk-modal-title">Unforeseen Error :(</h2>
+				</div>
+				<div class="uk-modal-body">
+					<p>Whoops! Well, this wasn't supposed to happen. Please double check that you've entered a valid email address, but if you're still having issues, no worries. We'd happy to add you to our mailing list manually, just shoot over an email to <a href="mailto:hello@realityhacks.io">hello@realityhacks.io</a>.</p>
+					<p>Thank you once again for your interest in RealityHacks. Together, we shall define the future!</p>
+				</div>
+				<div class="uk-modal-footer uk-text-right">
+					<button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+				</div>
+			</div>
+		</div>
+		<div class="uk-section uk-section-primary uk-preserve-color" style="background-color: #240B36;">
+			<div class="uk-container">
+
+				<div class="uk-panel uk-light uk-margin-medium">
+					<h3>More content to come soon...</h3>
+				</div>
+
+				<div class="uk-grid-match uk-child-width-expand@m" uk-grid>
+					<div>
+						<div class="uk-card uk-card-default uk-card-body">
+							<p>Want to join our team? Shoot us an email at <a href="mailto:hello@realityhacks.io">hello@realityhacks.io</a> to find out how you can get involved.</p>
+						</div>
+					</div>
+					<div>
+						<div class="uk-card uk-card-default uk-card-body">
+							<p>Interested in sponsoring? Contact <a href="mailto:sponsorship@realityhacks.io">sponsorship@realityhacks.io</a> for more info.</p>
+						</div>
+					</div>
+					<div>
+						<div class="uk-card uk-card-default uk-card-body">
+							<p>Looking for last year's site? <a href="https://2018.realityhacks.io/">Click here!</a></p>
+						</div>
+					</div>
+				</div>
+				<p id="copyright">&copy; 2019 RealityHacks. All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+</html>
